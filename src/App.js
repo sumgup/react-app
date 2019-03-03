@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Clock from "./Components/clock";
 import Counters from "./Components/counters";
 
 class App extends Component {
@@ -16,7 +17,7 @@ class App extends Component {
               Component to display vertical navigation.
           </div>
           <div class="col-sm border bg-light">
-            Component to display body.
+            <Clock />
           </div>
           <div className="col-sm border bg-light">
             <Counters value = {this.state.counters}></Counters>
