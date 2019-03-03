@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ApiCall from "./Components/apiCall";
 import Clock from "./Components/clock";
 import Counters from "./Components/counters";
 
@@ -14,7 +15,7 @@ class App extends Component {
       <div className = "container-fluid">
         <div className = "row">
           <div class="col-sm border bg-light">
-              Component to display vertical navigation.
+              <ApiCall/>
           </div>
           <div class="col-sm border bg-light">
             <Clock />
