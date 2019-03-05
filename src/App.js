@@ -5,6 +5,7 @@ import ApiCall from "./Components/apiCall";
 import Clock from "./Components/clock";
 import Counters from "./Components/counters";
 import ModalEx from "./Components/modalEx";
+import FormEx from "./Components/formEx";
 
 class App extends Component {
   state = {
@@ -30,26 +31,22 @@ class App extends Component {
         </div>
         <div className = "row">
           <div class="col-sm border bg-light">
-          <ButtonToolbar>
-        <Button
-          variant="primary"
-          onClick={() => this.setState({ modalShow: true })}
-        >
-          Launch vertically centered modal
-        </Button>
-
-        <ModalEx
-          show={this.state.modalShow}
-          onHide={modalClose}
-        />
-      </ButtonToolbar>
-          </div>
+            < ButtonToolbar>
+                <Button
+                  variant="primary"
+                  onClick={() => this.setState({ modalShow: true })}>
+                  Launch vertically centered modal
+                </Button>
+                <ModalEx
+                  show={this.state.modalShow}
+                  onHide={modalClose}/>
+              </ButtonToolbar>
+          </div>                 
+        </div>
+        <div className = "row">
           <div class="col-sm border bg-light">
-            <Clock />
-          </div>
-          <div className="col-sm border bg-light">
-            <Counters value = {this.state.counters}></Counters>
-          </div>          
+            <FormEx />
+          </div>                 
         </div>
       </div>    
     );
