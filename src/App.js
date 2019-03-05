@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import {ButtonToolbar, Button, Modal} from 'react-bootstrap'
 import './App.css';
-import ApiCall from "./Components/apiCall";
 import Clock from "./Components/clock";
 import Counters from "./Components/counters";
 import ModalEx from "./Components/modalEx";
-import FormEx from "./Components/formEx";
+import NavComp from "./Components/navComp";
 
 class App extends Component {
   state = {
@@ -18,10 +17,8 @@ class App extends Component {
 
     return (
       <div className = "container-fluid">
+        
         <div className = "row">
-          <div class="col-sm border bg-light">
-              <ApiCall/>
-          </div>
           <div class="col-sm border bg-light">
             <Clock />
           </div>
@@ -45,8 +42,8 @@ class App extends Component {
         </div>
         <div className = "row">
           <div class="col-sm border bg-light">
-            <FormEx />
-          </div>                 
+              <NavComp/>
+          </div>     
         </div>
       </div>    
     );
