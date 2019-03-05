@@ -6,18 +6,18 @@ class ApiCall extends Component {
       this.state = {
         error: null,
         isLoaded: false,
-        ip: []
+        people: []
       };
     }
   
     componentDidMount() {
-      fetch("http://ip.jsontest.com/")
+      fetch("https://my-json-server.typicode.com/kumardh/react-app")
         .then(res => res.json())
         .then(
           (result) => {
             this.setState({
               isLoaded: true,
-              ip: result.ip
+              name: result[0].name
             });
           },
           // Note: it's important to handle errors here
