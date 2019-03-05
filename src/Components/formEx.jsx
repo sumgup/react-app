@@ -4,6 +4,7 @@ import {Form, Button, Col} from 'react-bootstrap';
 class FormEx extends Component {
     render() {
       return (
+        <div class="col-sm border bg-light">
         <Form>
             <Form.Row>
                 <Form.Group as={Col} controlId="formGridEmail">
@@ -55,6 +56,7 @@ class FormEx extends Component {
                 Submit
             </Button>
         </Form>
+        </div>
       );
     }
   }
