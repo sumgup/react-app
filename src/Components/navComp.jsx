@@ -12,7 +12,7 @@ class NavComp extends Component {
             <Router>
                 <div className = "row"> 
                     <ul class="nav flex-column mb-3">
-                        <li class="nav-item"><Link to="/apiCall">Api Call</Link></li>
+                        <li class="nav-item"><Link to="/apiCall">Api Call Demo..</Link></li>
                         <li class="nav-item"><Link to="/form">Form Demo</Link></li>
                         <li class="nav-item"><Link to="/modalDemo">Modal Demo</Link></li>
                         <li class="nav-item"><Link to="/counters">Counters</Link> </li>  
