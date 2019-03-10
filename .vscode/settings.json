@@ -1,0 +1,7 @@
+{
+    "appService.zipIgnorePattern": [
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/6d0d4ae1-33b7-4142-a31c-b2e39e37a660/resourceGroups/appsvc_rg_linux_centralus/providers/Microsoft.Web/sites/dhkumreact",
+    "appService.deploySubpath": "build"
+}
