@@ -35,12 +35,20 @@ class ApiCall extends Component {
     render() {
         const { error, isLoaded, posts } = this.state;
         if (error) {
-          return <div class="col-sm border bg-light">Error: {error.message}</div>;
+          return (
+            <div class="col-sm border bg-light">
+            <div>post :</div>
+            <div>Error: {error.message}</div>
+          </div>
+          );
         } else if (!isLoaded) {
           return <div class="col-sm border bg-light">Loading...</div>;
         } else {
           return (
-            <div class="col-sm border bg-light"><h1>{posts[0].title}</h1></div>
+            <div class="col-sm border bg-light">
+            <div>post :</div>
+            <div><h1>{posts[0].title}</h1></div>
+            </div>
           );
         }
       }
