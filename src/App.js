@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import Clock from "./Components/clock";
-
-
 import NavComp from "./Components/navComp";
 
 class App extends Component {
@@ -13,15 +11,15 @@ class App extends Component {
 
     return (
       <div className = "container-fluid">
-      <div className = "row">
-          <div class="col-sm border bg-light">
-              <Clock/>
-          </div> 
-          </div>
         <div className = "row">
-          <div class="col-sm border bg-light">
-              <NavComp/>
-          </div>                  
+            <div className="col-sm border bg-light">
+                <Clock/>
+            </div> 
+        </div>
+        <div className = "row">
+            <div className="col-sm border bg-light">
+                <NavComp/>
+            </div>                  
         </div>        
       </div>    
     );

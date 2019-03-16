@@ -6,18 +6,18 @@ class ApiCall extends Component {
       this.state = {
         error: null,
         isLoaded: false,
-        posts: []
+        hotels: []
       };
     }
   
     componentDidMount() {
-      fetch("https://my-json-server.typicode.com/typicode/demo/posts")
+      fetch("https://hotelapiapp.azurewebsites.net/api/hotels")
         .then(res => res.json())
         .then(
           (result) => {
             this.setState({
               isLoaded: true,
-              posts: result
+              hotels: result
             });
           },
           // Note: it's important to handle errors here
@@ -36,18 +36,22 @@ class ApiCall extends Component {
         const { error, isLoaded, posts } = this.state;
         if (error) {
           return (
-            <div class="col-sm border bg-light">
-            <div>post :</div>
+            <div className="col-sm border bg-light">
+            <div>hotels :</div>
             <div>Error: {error.message}</div>
           </div>
           );
         } else if (!isLoaded) {
-          return <div class="col-sm border bg-light">Loading...</div>;
+          return <div className="col-sm border bg-light">Loading...</div>;
         } else {
           return (
-            <div class="col-sm border bg-light">
-            <div>post :</div>
-            <div><h1>{posts[0].title}</h1></div>
+            <div className="col-sm border bg-light">
+              <div>hotels :</div>
+              <ul>
+              {this.state.hotels.map(o => (
+                <li key={o.hotelId}>{o.name} | {o.address}</li>
+              ))}
+            </ul>
             </div>
           );
         }

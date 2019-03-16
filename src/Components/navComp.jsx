@@ -11,11 +11,11 @@ class NavComp extends Component {
         return (
             <Router>
                 <div> 
-                    <ul class="nav flex-column mb-3">
-                        <li class="nav-item"><Link to="/apiCall">Api Call Demo..</Link></li>
-                        <li class="nav-item"><Link to="/form">Form Demo</Link></li>
-                        <li class="nav-item"><Link to="/modalDemo">Modal Demo</Link></li>
-                        <li class="nav-item"><Link to="/counters">Counters</Link> </li>  
+                    <ul className="nav flex-column mb-3">
+                        <li className="nav-item"><Link to="/apiCall">Api Call Demo..</Link></li>
+                        <li className="nav-item"><Link to="/form">Form Demo</Link></li>
+                        <li className="nav-item"><Link to="/modalDemo">Modal Demo</Link></li>
+                        <li className="nav-item"><Link to="/counters">Counters</Link> </li>  
                     </ul>
                     <h2>Selected Componet</h2>
                     <Route path="/apiCall" exact component={ApiCall} />

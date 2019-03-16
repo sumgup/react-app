@@ -11,7 +11,7 @@ import NoMatchExample from "./Components/RouterEx/NoMatchExample"
 import ParamsExample from "./Components/RouterEx/ParamsExample"
 import RouteConfigExample from "./Components/RouterEx/RouteConfigExample"
 import SidebarExample from "./Components/RouterEx/SidebarExample"
-
+import PassingValuestToComp from "./Components/Practice/PassingValuestToComp"
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
