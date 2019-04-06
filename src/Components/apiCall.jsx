@@ -11,7 +11,7 @@ class ApiCall extends Component {
     }
   
     componentDidMount() {
-      fetch("https://hotelapiapp.azurewebsites.net/api/hotels")
+      fetch("https://dh-hotel-devops-api.azurewebsites.net/api/hotels")
         .then(res => res.json())
         .then(
           (result) => {
