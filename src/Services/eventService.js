@@ -7,3 +7,18 @@ export const GetEvents = function() {
         {id: 5, text: "Booking",  start: "2018-05-02T00:00:00", end: "2018-05-08T00:00:00", resource: "6", barColor: "#cc0000", barBackColor: "#ea9999" }
     ]
 }
+
+export const GetEventData = function() {
+    return {
+        guestName : "Dhananjay Kumar",
+        guestEmail : "Dhananjay.dhan@gmail.com",
+        guestPhone : "8050810934",
+        guestAddress : "B-1001, Brigade Meadows, Bangalore - 56",
+        checkinDate : "2019-04-25",
+        checkoutDate : "2019-04-30",
+        roomNumber : "001",
+        guestCounts : 2,
+        extraBed : true,
+        roomRate : 800
+    }
+}
