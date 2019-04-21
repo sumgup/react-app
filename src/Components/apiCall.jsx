@@ -36,7 +36,7 @@ class ApiCall extends Component {
         const { error, isLoaded, posts } = this.state;
         if (error) {
           return (
-            <div className="col-sm border bg-light">
+            <div>
             <div>hotels :</div>
             <div>Error: {error.message}</div>
           </div>
