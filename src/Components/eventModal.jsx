@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import {Form, Button, Col, Modal} from 'react-bootstrap';
-import {GetEventData} from "../Services/eventService.js";
+import {GetEventData, ComputeCharge} from "../Services/eventService.js";
 
 class EventModal extends Component {
   constructor(props) {
     super(props);
     let data = GetEventData();
+    let computedData = ComputeCharge(data.roomRate,0, 5);
     this.state = {      
       selectedEvent: this.props.selectedEvent,
       guestName : data.guestName,
@@ -18,9 +19,10 @@ class EventModal extends Component {
       guestCounts : data.guestCounts,
       extraBed : data.extraBed,
       roomRate : data.roomRate,
-      roomCharges: 0, 
-      taxAmount: 0,
-      totalAmount : 0
+      roomCharges: computedData.roomCharges, 
+      cgstAmount: computedData.cgstAmount,
+      sgstAmount: computedData.sgstAmount,
+      totalAmount : computedData.totalAmount
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -33,19 +35,19 @@ class EventModal extends Component {
     const name = target.name;
     if(name === 'roomRate')
     {
-      const roomCharges = value*5;
-      const taxAmount = roomCharges*8/100;
-      const totalAmount = roomCharges + taxAmount;
+      let computedData = ComputeCharge(value,0, 5);
+      console.log(computedData);
         this.setState({ 
-          roomCharges: roomCharges, 
-          taxAmount: taxAmount,
-          totalAmount : totalAmount
+          roomCharges: computedData.roomCharges, 
+          cgstAmount: computedData.cgstAmount,
+          sgstAmount: computedData.sgstAmount,
+          totalAmount : computedData.totalAmount
         });
     }
     
     console.log(value + name);
     this.setState({ [name]: value });
-  }
+  }  
 
   handleSubmit(event) {    
     console.log("submit");
@@ -124,10 +126,18 @@ class EventModal extends Component {
             </div>
             <div className="form-row">  
                 <div className="col-md-3 ml-auto">
-                  <label>GST (8%):</label>                 
+                  <label>CGST (8%):</label>                 
                 </div> 
                 <div className="col-md-3">
-                  <label>{this.state.taxAmount}</label>                 
+                  <label>{this.state.cgstAmount}</label>                 
+                </div> 
+            </div>
+            <div className="form-row">  
+                <div className="col-md-3 ml-auto">
+                  <label>SGST (8%):</label>                 
+                </div> 
+                <div className="col-md-3">
+                  <label>{this.state.sgstAmount}</label>                 
                 </div> 
             </div>
             <div className="form-row">  

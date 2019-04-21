@@ -22,3 +22,40 @@ export const GetEventData = function() {
         roomRate : 800
     }
 }
+
+export const ComputeCharge = function(rootRate, discount, daysCount)
+  {
+      let cgstPercentage = 0;
+      let sgstPercentage = 0;
+      let cgstAmount = 0;
+      let sgstAmount = 0;
+      let roomCharges  = 0;
+      let discountAmount  = 0;
+      let totalAmount  = 0;
+      let discountedRate = rootRate - (rootRate * discount / 100);
+      if(discountedRate >= 1000 && discountedRate < 2500)
+      {
+        cgstPercentage = 6;
+        sgstPercentage = 6;
+      }
+      else
+      {
+        cgstPercentage = 9;
+        sgstPercentage = 9;
+      }
+      roomCharges = rootRate * daysCount;
+      discountAmount = rootRate * daysCount * discount / 100;
+      cgstAmount = (roomCharges - discountAmount) * cgstPercentage / 100;
+      sgstAmount = (roomCharges - discountAmount) * sgstPercentage / 100;
+      totalAmount = roomCharges - discountAmount + cgstAmount + totalAmount;
+      
+      return {
+        roomCharges: roomCharges,
+        discountAmount: discountAmount,
+        cgstAmount: cgstAmount,
+        sgstAmount: sgstAmount,
+        totalAmount: totalAmount,
+        cgstPercentage: cgstPercentage,
+        sgstPercentage: sgstPercentage
+      }
+  }
