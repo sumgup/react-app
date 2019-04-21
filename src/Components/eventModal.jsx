@@ -6,7 +6,7 @@ class EventModal extends Component {
   constructor(props) {
     super(props);
     let data = GetEventData();
-    let computedData = ComputeCharge(data.roomRate,0, 5);
+    let computedData = ComputeCharge(data.roomRate,data.discount, 5);
     this.state = {      
       selectedEvent: this.props.selectedEvent,
       guestName : data.guestName,
@@ -17,12 +17,15 @@ class EventModal extends Component {
       checkoutDate : data.checkoutDate,
       roomNumber : data.roomNumber,
       guestCounts : data.guestCounts,
-      extraBed : data.extraBed,
       roomRate : data.roomRate,
-      roomCharges: computedData.roomCharges, 
+      discount : data.discount,
+      roomCharges: computedData.roomCharges,
+      discountAmount: computedData.discountAmount,
       cgstAmount: computedData.cgstAmount,
       sgstAmount: computedData.sgstAmount,
-      totalAmount : computedData.totalAmount
+      totalAmount : computedData.totalAmount,
+      cgstPercentage: computedData.cgstPercentage,
+      sgstPercentage: computedData.sgstPercentage
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -33,15 +36,19 @@ class EventModal extends Component {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
-    if(name === 'roomRate')
+    if(name === 'roomRate' || name === 'discount')
     {
-      let computedData = ComputeCharge(value,0, 5);
-      console.log(computedData);
-        this.setState({ 
+       let computedData = name === 'roomRate'
+        ? ComputeCharge(value,this.state.discount, 5)
+        : ComputeCharge(this.state.roomRate,value, 5);
+       this.setState({ 
           roomCharges: computedData.roomCharges, 
+          discountAmount: computedData.discountAmount,
           cgstAmount: computedData.cgstAmount,
           sgstAmount: computedData.sgstAmount,
-          totalAmount : computedData.totalAmount
+          totalAmount : computedData.totalAmount,
+          cgstPercentage: computedData.cgstPercentage,
+          sgstPercentage: computedData.sgstPercentage
         });
     }
     
@@ -107,8 +114,8 @@ class EventModal extends Component {
                   <input className="form-control" name="guestCounts" type="number" value={this.state.guestCounts} onChange={this.handleInputChange} />                  
                 </div>
                 <div className="col-md-3 mb-3">
-                  <label>Extra Bed:</label>
-                  <input className="form-control" name="extraBed" type="checkbox" checked={this.state.extraBed} onChange={this.handleInputChange} />                 
+                  <label>Discount(%):</label>
+                  <input className="form-control" name="discount" type="number" value={this.state.discount} onChange={this.handleInputChange} />                 
                 </div>   
                 <div className="col-md-3 mb-3">
                   <label>Room Rate:</label>
@@ -126,7 +133,15 @@ class EventModal extends Component {
             </div>
             <div className="form-row">  
                 <div className="col-md-3 ml-auto">
-                  <label>CGST (8%):</label>                 
+                  <label>Discount({this.state.discount}%):</label>                 
+                </div> 
+                <div className="col-md-3">
+                  <label>{this.state.discountAmount}</label>                 
+                </div> 
+            </div>
+            <div className="form-row">  
+                <div className="col-md-3 ml-auto">
+                  <label>CGST ({this.state.cgstPercentage}%):</label>                 
                 </div> 
                 <div className="col-md-3">
                   <label>{this.state.cgstAmount}</label>                 
@@ -134,7 +149,7 @@ class EventModal extends Component {
             </div>
             <div className="form-row">  
                 <div className="col-md-3 ml-auto">
-                  <label>SGST (8%):</label>                 
+                  <label>SGST ({this.state.sgstPercentage}%):</label>                 
                 </div> 
                 <div className="col-md-3">
                   <label>{this.state.sgstAmount}</label>                 

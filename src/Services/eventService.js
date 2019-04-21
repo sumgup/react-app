@@ -18,8 +18,8 @@ export const GetEventData = function() {
         checkoutDate : "2019-04-30",
         roomNumber : "001",
         guestCounts : 2,
-        extraBed : true,
-        roomRate : 800
+        roomRate : 800,
+        discount : 5
     }
 }
 
@@ -33,7 +33,12 @@ export const ComputeCharge = function(rootRate, discount, daysCount)
       let discountAmount  = 0;
       let totalAmount  = 0;
       let discountedRate = rootRate - (rootRate * discount / 100);
-      if(discountedRate >= 1000 && discountedRate < 2500)
+      if(discountedRate < 1000)
+      {
+        cgstPercentage = 0;
+        sgstPercentage = 0;
+      }
+      else if(discountedRate >= 1000 && discountedRate < 2500)
       {
         cgstPercentage = 6;
         sgstPercentage = 6;
