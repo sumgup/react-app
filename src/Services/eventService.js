@@ -10,20 +10,37 @@ export const GetEvents = function() {
 
 export const GetEventData = function() {
     return {
-        guestName : "Dhananjay Kumar",
-        guestEmail : "Dhananjay.dhan@gmail.com",
-        guestPhone : "8050810934",
-        guestAddress : "B-1001, Brigade Meadows, Bangalore - 56",
-        checkinDate : "2019-04-25",
+      event : {
+        id : 1,
+        name : "Checkin",
+        checkinDate : "2019-04-27",
         checkoutDate : "2019-04-30",
-        roomNumber : "001",
-        guestCounts : 2,
-        roomRate : 800,
+        roomRate : 800,               
         discount : 5
+      },
+      guest : {
+        id : 1,
+        name : "Dhananjay Kumar",
+        email : "Dhananjay.dhan@gmail.com",
+        phone : "8050810934",
+        address : "B-1001, Brigade Meadows, Bangalore - 56"
+      },
+      room : {
+        id : 1,
+        number : "001",
+        guestCounts : 2      
+      },
+      payments : [
+        {
+          id : 1,
+          mode: "Cash",
+          amount: 100
+        }
+      ]
     }
 }
 
-export const ComputeCharge = function(rootRate, discount, daysCount)
+export const ComputeCharge = function(rootRate, discount, checkinDate, checkoutDate)
   {
       let cgstPercentage = 0;
       let sgstPercentage = 0;
@@ -48,6 +65,7 @@ export const ComputeCharge = function(rootRate, discount, daysCount)
         cgstPercentage = 9;
         sgstPercentage = 9;
       }
+      let daysCount = date_diff_indays(checkinDate, checkoutDate);
       roomCharges = rootRate * daysCount;
       discountAmount = rootRate * daysCount * discount / 100;
       cgstAmount = (roomCharges - discountAmount) * cgstPercentage / 100;
@@ -63,4 +81,10 @@ export const ComputeCharge = function(rootRate, discount, daysCount)
         cgstPercentage: cgstPercentage,
         sgstPercentage: sgstPercentage
       }
+  }
+
+  var date_diff_indays = function(date1, date2) {
+    let dt1 = new Date(date1);
+    let dt2 = new Date(date2);
+    return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
   }
