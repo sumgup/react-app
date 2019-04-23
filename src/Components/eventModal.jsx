@@ -121,49 +121,49 @@ class EventModal extends Component {
           <Modal.Body>
             <div className="form-row">
                 <div className="col-md-4 mb-3">
-                  <label>Guest Name:</label>
+                  <h6><span>Guest Name:</span></h6>
                   <input className="form-control" name="guestName" type="text" value={this.state.guest.name} onChange={this.handleInputChange} />                 
                 </div>
                 <div className="col-md-4 mb-3">
-                  <label>Guest Email:</label>
+                  <h6><span>Email:</span></h6>
                   <input className="form-control" name="guestEmail" type="email" value={this.state.guest.email} onChange={this.handleInputChange} />                
                 </div>
                 <div className="col-md-4 mb-3">                  
-                  <label>Guest Phone:</label>
+                  <h6><span>Phone:</span></h6>
                   <input className="form-control" name="guestPhone" type="text" value={this.state.guest.phone} onChange={this.handleInputChange} />               
                 </div>
             </div>
             <div className="form-row">
                 <div className="col-md-12 mb-3">
-                  <label>Guest Address:</label>
+                  <h6><span>Address:</span></h6>
                   <input className="form-control" name="guestAddress" type="text" value={this.state.guest.address} onChange={this.handleInputChange} />                  
                 </div>
             </div>
             <div className="form-row">
                 <div className="col-md-6 mb-3">
-                  <label>Checkin Date:</label>
+                  <h6><span>Checkin Date:</span></h6>
                   <input className="form-control" name="checkinDate" type="date" value={this.state.event.checkinDate} onChange={this.handleCheckinDateChange} />             
                 </div>
                 <div className="col-md-6 mb-3">
-                  <label>Checkout Date:</label>
+                  <h6><span>Checkout Date:</span></h6>
                   <input className="form-control" name="checkoutDate" type="date" value={this.state.event.checkoutDate} onChange={this.handleCheckoutDateChange} />                
                 </div>
             </div>
             <div className="form-row">
                 <div className="col-md-3 mb-3">
-                  <label>Room Number:</label>
+                  <h6><span>Room:</span></h6>
                   <input className="form-control" name="roomNumber" type="text" value={this.state.room.number} onChange={this.handleInputChange} />                  
                 </div>
                 <div className="col-md-3 mb-3">
-                  <label>Guest Counts:</label>
+                  <h6><span>Guest Count:</span></h6>
                   <input className="form-control" name="guestCounts" type="number" value={this.state.room.guestCounts} onChange={this.handleInputChange} />                  
                 </div>
                 <div className="col-md-3 mb-3">
-                  <label>Discount(%):</label>
+                  <h6><span>Discount(%):</span></h6>
                   <input className="form-control" name="discount" type="number" value={this.state.event.discount} onChange={this.handleDiscountChange} />                 
                 </div>   
                 <div className="col-md-3 mb-3">
-                  <label>Room Rate:</label>
+                  <h6><span>Room Rate:</span></h6>
                   <input className="form-control" name="roomRate" type="number" value={this.state.event.roomRate} onChange={this.handleRoomRateChange} />                  
                 </div>             
             </div>
@@ -173,32 +173,32 @@ class EventModal extends Component {
                 </div>
             </div>                
             <div className="row justify-content-end">  
-              <button type="button" className="btn btn-light btn-sm w-25 float-right" disabled>Room Charges:</button>
-              <button type="button" className="btn btn-light btn-sm w-25" disabled>{this.state.computedData.roomCharges}</button>
+              <span className="btn btn-sm w-25">Room Charges:</span>
+              <span className="btn btn-sm w-25"><strong>{this.state.computedData.roomCharges}</strong></span>
             </div>
             <div className="row justify-content-end"> 
-              <button type="button" className="btn btn-light btn-sm w-25" disabled>Discount({this.state.discount}%):</button>
-              <button type="button" className="btn btn-light btn-sm w-25" disabled>{this.state.computedData.discountAmount}</button>
+              <span className="btn btn-sm w-25">Discount({this.state.discount}%):</span>
+              <span className="btn btn-sm w-25"><strong>{this.state.computedData.discountAmount}</strong></span>
             </div> 
             <div className="row justify-content-end"> 
-              <button type="button" className="btn btn-light btn-sm w-25" disabled>CGST ({this.state.computedData.cgstPercentage}%):</button>
-              <button type="button" className="btn btn-light btn-sm w-25" disabled>{this.state.computedData.cgstAmount}</button>
+              <span className="btn btn-sm w-25">CGST ({this.state.computedData.cgstPercentage}%):</span>
+              <span className="btn btn-sm w-25"><strong>{this.state.computedData.cgstAmount}</strong></span>
             </div>
             <div className="row justify-content-end"> 
-              <button type="button" className="btn btn-light btn-sm w-25" disabled>SGST ({this.state.computedData.sgstPercentage}%):</button>
-              <button type="button" className="btn btn-light btn-sm w-25" disabled>{this.state.computedData.sgstAmount}</button>
+              <span className="btn btn-sm w-25">SGST ({this.state.computedData.sgstPercentage}%):</span>
+              <span className="btn btn-sm w-25"><strong>{this.state.computedData.sgstAmount}</strong></span>
             </div>
             <div className="row justify-content-end"> 
-              <button type="button" className="btn btn-light btn-sm w-25" disabled>Total Amount:</button>
-              <button type="button" className="btn btn-light btn-sm w-25" disabled>{this.state.computedData.totalAmount}</button>
+              <span className="btn btn-sm w-25" >Total Amount:</span>
+              <span className="btn btn-sm w-25" ><strong>{this.state.computedData.totalAmount}</strong></span>
             </div>
             <div className="row justify-content-end"> 
-              <button type="button" className="btn btn-light btn-sm w-25" disabled>Paid Amount:</button>
-              <button type="button" className="btn btn-light btn-sm w-25" disabled>{this.state.computedData.paidAmount}</button>
+              <span className="btn btn-sm w-25">Paid Amount:</span>
+              <span className="btn btn-sm w-25"><strong>{this.state.computedData.paidAmount}</strong></span>
             </div>
             <div className="row justify-content-end"> 
-              <button type="button" className="btn btn-light btn-sm w-25" disabled>Due Amount:</button>
-              <button type="button" className="btn btn-light btn-sm w-25" disabled>{this.state.computedData.dueAmount}</button>
+              <span className="btn btn-sm w-25">Due Amount:</span>
+              <span className="btn btn-sm w-25"><strong>{this.state.computedData.dueAmount}</strong></span>
             </div>
             <br/>
             <div className="form-row">  

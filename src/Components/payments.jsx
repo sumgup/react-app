@@ -43,7 +43,7 @@ class Payments extends Component {
     render() {
         return (
         <>
-            <label>Payments:</label>
+            <h6><span>Payments:</span></h6>
             <div className="form-inline">
                 <input className="form-control mb-2 mr-sm-2" name="mode" type="text" value={this.state.newPayment.mode} placeholder= "Mode" onChange={this.handleInputChange}/>
                 <input className="form-control mb-2 mr-sm-2" name="amount" type="number" value={this.state.newPayment.amount} placeholder= "Amount" onChange={this.handleInputChange}/>
