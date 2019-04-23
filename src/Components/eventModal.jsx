@@ -172,61 +172,33 @@ class EventModal extends Component {
                     <Payments payments={this.state.payments} onPaymentChange={this.handlePaymentChange}/>
                 </div>
             </div>                
-            <div className="form-row">  
-                <div className="col-md-3 ml-auto">
-                  <label>Room Charges:</label>                 
-                </div> 
-                <div className="col-md-3">
-                  <label>{this.state.computedData.roomCharges}</label>                 
-                </div> 
+            <div className="row justify-content-end">  
+              <button type="button" className="btn btn-light btn-sm w-25 float-right" disabled>Room Charges:</button>
+              <button type="button" className="btn btn-light btn-sm w-25" disabled>{this.state.computedData.roomCharges}</button>
             </div>
-            <div className="form-row">  
-                <div className="col-md-3 ml-auto">
-                  <label>Discount({this.state.discount}%):</label>                 
-                </div> 
-                <div className="col-md-3">
-                  <label>{this.state.computedData.discountAmount}</label>                 
-                </div> 
+            <div className="row justify-content-end"> 
+              <button type="button" className="btn btn-light btn-sm w-25" disabled>Discount({this.state.discount}%):</button>
+              <button type="button" className="btn btn-light btn-sm w-25" disabled>{this.state.computedData.discountAmount}</button>
+            </div> 
+            <div className="row justify-content-end"> 
+              <button type="button" className="btn btn-light btn-sm w-25" disabled>CGST ({this.state.computedData.cgstPercentage}%):</button>
+              <button type="button" className="btn btn-light btn-sm w-25" disabled>{this.state.computedData.cgstAmount}</button>
             </div>
-            <div className="form-row">  
-                <div className="col-md-3 ml-auto">
-                  <label>CGST ({this.state.computedData.cgstPercentage}%):</label>                 
-                </div> 
-                <div className="col-md-3">
-                  <label>{this.state.computedData.cgstAmount}</label>                 
-                </div> 
+            <div className="row justify-content-end"> 
+              <button type="button" className="btn btn-light btn-sm w-25" disabled>SGST ({this.state.computedData.sgstPercentage}%):</button>
+              <button type="button" className="btn btn-light btn-sm w-25" disabled>{this.state.computedData.sgstAmount}</button>
             </div>
-            <div className="form-row">  
-                <div className="col-md-3 ml-auto">
-                  <label>SGST ({this.state.computedData.sgstPercentage}%):</label>                 
-                </div> 
-                <div className="col-md-3">
-                  <label>{this.state.computedData.sgstAmount}</label>                 
-                </div> 
+            <div className="row justify-content-end"> 
+              <button type="button" className="btn btn-light btn-sm w-25" disabled>Total Amount:</button>
+              <button type="button" className="btn btn-light btn-sm w-25" disabled>{this.state.computedData.totalAmount}</button>
             </div>
-            <div className="form-row">  
-                <div className="col-md-3 ml-auto">
-                  <label>Total Amount:</label>                 
-                </div> 
-                <div className="col-md-3">
-                  <label>{this.state.computedData.totalAmount}</label>                 
-                </div> 
+            <div className="row justify-content-end"> 
+              <button type="button" className="btn btn-light btn-sm w-25" disabled>Paid Amount:</button>
+              <button type="button" className="btn btn-light btn-sm w-25" disabled>{this.state.computedData.paidAmount}</button>
             </div>
-            <div className="form-row">  
-                <div className="col-md-3 ml-auto">
-                  <label>Paid Amount:</label>                 
-                </div> 
-                <div className="col-md-3">
-                  <label>{this.state.computedData.paidAmount}</label>                 
-                </div> 
-            </div>
-            <div className="form-row">  
-                <div className="col-md-3 ml-auto">
-                  <label>Due Amount:</label>                 
-                </div> 
-                <div className="col-md-3">
-                  <label>{this.state.computedData.dueAmount}</label>                 
-                </div> 
+            <div className="row justify-content-end"> 
+              <button type="button" className="btn btn-light btn-sm w-25" disabled>Due Amount:</button>
+              <button type="button" className="btn btn-light btn-sm w-25" disabled>{this.state.computedData.dueAmount}</button>
             </div>
             <br/>
             <div className="form-row">  
