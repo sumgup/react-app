@@ -34,7 +34,14 @@ export const GetEventData = function() {
         {
           id : 1,
           mode: "Cash",
-          amount: 100
+          amount: 100,
+          notes: "abc"
+        },
+        {
+          id : 1,
+          mode: "Check",
+          amount: 200,
+          notes: "SBI -3536377288"
         }
       ]
     }

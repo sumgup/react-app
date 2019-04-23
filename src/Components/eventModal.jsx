@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {Form, Button, Col, Modal} from 'react-bootstrap';
 import {GetEventData, ComputeCharge} from "../Services/eventService.js";
+import Payments from "./payments";
 
 class EventModal extends Component {
   constructor(props) {
@@ -157,7 +158,11 @@ class EventModal extends Component {
                   <input className="form-control" name="roomRate" type="number" value={this.state.event.roomRate} onChange={this.handleRoomRateChange} />                  
                 </div>             
             </div>
-            <br/>
+            <div className="form-row">
+                <div className="col-md-12 mb-3">                    
+                    <Payments payments={this.state.payments}/>
+                </div>
+            </div>                
             <div className="form-row">  
                 <div className="col-md-3 ml-auto">
                   <label>Room Charges:</label>                 
