@@ -4,97 +4,106 @@ import {GetEventData, ComputeCharge} from "../Services/eventService.js";
 import Payments from "./payments";
 
 class EventModal extends Component {
-  constructor(props) {
-    super(props);
-    let data = GetEventData();
-    let computedData = ComputeCharge(data.event.roomRate, data.event.discount, data.event.checkinDate, data.event.checkoutDate);
-    this.state = {      
-      selectedEvent: this.props.selectedEvent,
-      event : data.event,
-      guest : data.guest,
-      room : data.room,
-      payments : data.payments,
-      computedData : computedData
-    };
+    constructor(props) {
+      super(props);
+      let data = GetEventData();            
+      let computedData = ComputeCharge(data.event.roomRate, data.event.discount, data.event.checkinDate, data.event.checkoutDate, data.payments);
+      this.state = {      
+        selectedEvent: this.props.selectedEvent,
+        event : data.event,
+        guest : data.guest,
+        room : data.room,
+        payments : data.payments,
+        computedData : computedData
+      };
 
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleRoomRateChange = this.handleRoomRateChange.bind(this);
-    this.handleDiscountChange = this.handleDiscountChange.bind(this);
-    this.handleCheckinDateChange = this.handleCheckinDateChange.bind(this);
-    this.handleCheckoutDateChange = this.handleCheckoutDateChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+      this.handleInputChange = this.handleInputChange.bind(this);
+      this.handleRoomRateChange = this.handleRoomRateChange.bind(this);
+      this.handleDiscountChange = this.handleDiscountChange.bind(this);
+      this.handleCheckinDateChange = this.handleCheckinDateChange.bind(this);
+      this.handleCheckoutDateChange = this.handleCheckoutDateChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
+      this.handlePaymentChange = this.handlePaymentChange.bind(this);
+    }
 
-  handleCheckinDateChange(e) { 
-    const value = e.target.value;
-    let computedData = ComputeCharge(this.state.event.roomRate, this.state.event.discount, value, this.state.event.checkoutDate);
-    let event = {...this.state.event};
-    event.checkinDate = value;
-    
-    this.setState({ 
-      computedData: computedData,        
-      event : event
-    });
-  }
+    handleCheckinDateChange(e) { 
+      const value = e.target.value;
+      let computedData = ComputeCharge(this.state.event.roomRate, this.state.event.discount, value, this.state.event.checkoutDate, this.state.payments);
+      let event = {...this.state.event};
+      event.checkinDate = value;
+      
+      this.setState({ 
+        computedData: computedData,        
+        event : event
+      });
+    }
 
-  handleCheckoutDateChange(e) { 
-    const value = e.target.value;
-    let computedData = ComputeCharge(this.state.event.roomRate, this.state.event.discount, this.state.event.checkinDate, value);
-    let event = {...this.state.event};
-    event.checkoutDate = value;
-    
-    this.setState({ 
-      computedData: computedData,        
-      event : event
-    });
-  }
+    handleCheckoutDateChange(e) { 
+      const value = e.target.value;
+      let computedData = ComputeCharge(this.state.event.roomRate, this.state.event.discount, this.state.event.checkinDate, value, this.state.payments);
+      let event = {...this.state.event};
+      event.checkoutDate = value;
+      
+      this.setState({ 
+        computedData: computedData,        
+        event : event
+      });
+    }
 
-  handleRoomRateChange(e) { 
-    const value = e.target.value;
-    let computedData = ComputeCharge(value, this.state.event.discount, this.state.event.checkinDate, this.state.event.checkoutDate);
-    let event = {...this.state.event};
-    event.roomRate = value;
-    
-    this.setState({ 
-      computedData: computedData,        
-      event : event
-    });
-  }
+    handleRoomRateChange(e) { 
+      const value = e.target.value;
+      let computedData = ComputeCharge(value, this.state.event.discount, this.state.event.checkinDate, this.state.event.checkoutDate, this.state.payments);
+      let event = {...this.state.event};
+      event.roomRate = value;
+      
+      this.setState({ 
+        computedData: computedData,        
+        event : event
+      });
+    }
 
-  handleDiscountChange(e) { 
-    const value = e.target.value;
-    let computedData = ComputeCharge(this.state.event.roomRate, value, 5);
-    let event = {...this.state.event};
-    event.discount = value;
-    
-    this.setState({ 
-      computedData: computedData,        
-      event : event
-    });
-  }
+    handleDiscountChange(e) { 
+      const value = e.target.value;
+      let computedData = ComputeCharge(this.state.event.roomRate, value, this.state.event.checkinDate, this.state.event.checkoutDate, this.state.payments);
+      let event = {...this.state.event};
+      event.discount = value;
+      
+      this.setState({ 
+        computedData: computedData,        
+        event : event
+      });
+    }
 
-  handleInputChange(e) {    
-    const target = e.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-    let room = {...this.state.room};
-    let guest = {...this.state.guest};
-    if(name === 'guestName') { guest.name = value}
-    if(name === 'guestEmail') { guest.email = value}
-    if(name === 'guestPhone') { guest.phone = value}
-    if(name === 'guestAddress') { guest.address = value}
-    if(name === 'roomNumber') { room.number = value}
-    if(name === 'guestCounts') { room.guestCounts = value}
+    handlePaymentChange(payments) {
+      console.log(payments);
+      let computedData = ComputeCharge(this.state.event.roomRate, this.state.event.discount, this.state.event.checkinDate, this.state.event.checkoutDate, payments);
+      this.setState({ 
+        computedData: computedData
+      });
+    }
 
-    this.setState({ 
-      room: room,        
-      guest : guest
-    });
-  }  
+    handleInputChange(e) {    
+      const target = e.target;
+      const value = target.type === 'checkbox' ? target.checked : target.value;
+      const name = target.name;
+      let room = {...this.state.room};
+      let guest = {...this.state.guest};
+      if(name === 'guestName') { guest.name = value}
+      if(name === 'guestEmail') { guest.email = value}
+      if(name === 'guestPhone') { guest.phone = value}
+      if(name === 'guestAddress') { guest.address = value}
+      if(name === 'roomNumber') { room.number = value}
+      if(name === 'guestCounts') { room.guestCounts = value}
 
-  handleSubmit(event) {    
-    console.log("submit");
-  }
+      this.setState({ 
+        room: room,        
+        guest : guest
+      });
+    }  
+
+    handleSubmit(event) {    
+      console.log("submit");
+    }
 
     render() {
       return (
@@ -160,7 +169,7 @@ class EventModal extends Component {
             </div>
             <div className="form-row">
                 <div className="col-md-12 mb-3">                    
-                    <Payments payments={this.state.payments}/>
+                    <Payments payments={this.state.payments} onPaymentChange={this.handlePaymentChange}/>
                 </div>
             </div>                
             <div className="form-row">  
@@ -201,6 +210,22 @@ class EventModal extends Component {
                 </div> 
                 <div className="col-md-3">
                   <label>{this.state.computedData.totalAmount}</label>                 
+                </div> 
+            </div>
+            <div className="form-row">  
+                <div className="col-md-3 ml-auto">
+                  <label>Paid Amount:</label>                 
+                </div> 
+                <div className="col-md-3">
+                  <label>{this.state.computedData.paidAmount}</label>                 
+                </div> 
+            </div>
+            <div className="form-row">  
+                <div className="col-md-3 ml-auto">
+                  <label>Due Amount:</label>                 
+                </div> 
+                <div className="col-md-3">
+                  <label>{this.state.computedData.dueAmount}</label>                 
                 </div> 
             </div>
             <br/>

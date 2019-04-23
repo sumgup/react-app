@@ -47,7 +47,7 @@ export const GetEventData = function() {
     }
 }
 
-export const ComputeCharge = function(rootRate, discount, checkinDate, checkoutDate)
+export const ComputeCharge = function(rootRate, discount, checkinDate, checkoutDate, payments)
   {
       let cgstPercentage = 0;
       let sgstPercentage = 0;
@@ -56,6 +56,11 @@ export const ComputeCharge = function(rootRate, discount, checkinDate, checkoutD
       let roomCharges  = 0;
       let discountAmount  = 0;
       let totalAmount  = 0;
+      let dueAmount  = 0;
+
+      const amounts = payments.map(o=> o.amount);
+      const paidAmount = amounts.reduce(function(p, c) { return p + c; }, 0);
+
       let discountedRate = rootRate - (rootRate * discount / 100);
       if(discountedRate < 1000)
       {
@@ -78,6 +83,7 @@ export const ComputeCharge = function(rootRate, discount, checkinDate, checkoutD
       cgstAmount = (roomCharges - discountAmount) * cgstPercentage / 100;
       sgstAmount = (roomCharges - discountAmount) * sgstPercentage / 100;
       totalAmount = roomCharges - discountAmount + cgstAmount + totalAmount;
+      dueAmount = totalAmount - paidAmount;
       
       return {
         roomCharges: roomCharges,
@@ -86,7 +92,9 @@ export const ComputeCharge = function(rootRate, discount, checkinDate, checkoutD
         sgstAmount: sgstAmount,
         totalAmount: totalAmount,
         cgstPercentage: cgstPercentage,
-        sgstPercentage: sgstPercentage
+        sgstPercentage: sgstPercentage,
+        paidAmount: paidAmount,
+        dueAmount: dueAmount
       }
   }
 
