@@ -9,7 +9,7 @@ class Rooms extends Component {
   
   removeItem = (room) => {
     console.log('remove item' + room.id);
-    this.setState({ roomslist: this.state.roomslist.filter(r=> r.id != room.id)});
+    this.setState({ roomslist: this.state.roomslist.filter(r=> r.id !== room.id)});
   }
   render() {
     return (

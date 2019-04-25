@@ -33,7 +33,7 @@ class ApiCall extends Component {
     }
 
     render() {
-        const { error, isLoaded, posts } = this.state;
+        const { error, isLoaded } = this.state;
         if (error) {
           return (
             <div>

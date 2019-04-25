@@ -12,9 +12,9 @@ class Scheduler extends Component {
 
         this.state = {
             modalShow: false,
-            selectedEvent: {},
-            startDate: "2018-05-01",
-            days: 31,
+            selectedEventId: 0,
+            startDate: "2019-04-01",
+            days: 30,
             scale: "Day",
             timeHeaders: [
 
@@ -65,10 +65,9 @@ class Scheduler extends Component {
     }
 
     eventClicked(args) {
-        console.log(args.e.data.id);
         this.setState({
             modalShow: true,
-            selectedEvent : args.e.data
+            selectedEventId : args.e.data.id
         });
     }
 
@@ -87,10 +86,11 @@ class Scheduler extends Component {
                     onEventClicked={args => this.eventClicked(args)}
                     ref={component => { this.scheduler = component && component.control; }}
                 />
-                <EventModal
-                  show={this.state.modalShow}
-                  selectedevent = {this.state.selectedEvent}
-                  onHide={() => this.modalClose()}/>
+                {   
+                    this.state.selectedEventId
+                    ? <EventModal show={this.state.modalShow} selectedeventid = {this.state.selectedEventId} onHide={() => this.modalClose()}/>
+                    : <div/>
+                }
             </div>
         );
     }

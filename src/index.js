@@ -4,14 +4,6 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";
-import AnimationExample from "./Components/RouterEx/AnimationExample"
-import AuthExample from "./Components/RouterEx/AuthExample"
-import BasicExample from "./Components/RouterEx/BasicExample"
-import NoMatchExample from "./Components/RouterEx/NoMatchExample"
-import ParamsExample from "./Components/RouterEx/ParamsExample"
-import RouteConfigExample from "./Components/RouterEx/RouteConfigExample"
-import SidebarExample from "./Components/RouterEx/SidebarExample"
-import PassingValuestToComp from "./Components/Practice/PassingValuestToComp"
 
 ReactDOM.render(<App />, document.getElementById("root"));
 

@@ -1,15 +1,15 @@
 import React, { Component } from "react";
-import {Form, Button, Col, Modal} from 'react-bootstrap';
+import {Modal} from 'react-bootstrap';
 import {GetEventData, ComputeCharge} from "../Services/eventService.js";
 import Payments from "./payments";
 
 class EventModal extends Component {
     constructor(props) {
       super(props);
-      let data = GetEventData();            
+      let data = GetEventData(this.props.selectedeventid);
       let computedData = ComputeCharge(data.event.roomRate, data.event.discount, data.event.checkinDate, data.event.checkoutDate, data.payments);
-      this.state = {      
-        selectedEvent: this.props.selectedEvent,
+      this.state = { 
+        selectedEventId: this.props.selectedeventid,
         event : data.event,
         guest : data.guest,
         room : data.room,
@@ -24,6 +24,24 @@ class EventModal extends Component {
       this.handleCheckoutDateChange = this.handleCheckoutDateChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handlePaymentChange = this.handlePaymentChange.bind(this);
+    }
+
+    componentWillReceiveProps(newProps)
+    {
+      if (newProps.selectedeventid !== this.props.selectedeventid)
+      {
+        let data = GetEventData(newProps.selectedeventid); 
+        let computedData = ComputeCharge(data.event.roomRate, data.event.discount, data.event.checkinDate, data.event.checkoutDate, data.payments);
+        
+        this.setState({ 
+          selectedEventId: newProps.selectedeventid,
+          event : data.event,
+          guest : data.guest,
+          room : data.room,
+          payments : data.payments,
+          computedData : computedData
+        });
+      }
     }
 
     handleCheckinDateChange(e) { 
@@ -115,7 +133,7 @@ class EventModal extends Component {
         >
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
-                {this.props.selectedevent.text}
+                {this.state.event.name}
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>

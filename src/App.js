@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import SideBar from "./Components/sideBar";
-import Scheduler from "./Components/Scheduler";
 
 class App extends Component {
   

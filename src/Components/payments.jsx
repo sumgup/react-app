@@ -14,7 +14,7 @@ class Payments extends Component {
     }
   
     handleDeletePayment = (payment) => {
-        let payments = this.state.payments.filter(o=> o.id != payment.id);
+        let payments = this.state.payments.filter(o=> o.id !== payment.id);
         this.setState({ payments: payments});
         this.props.onPaymentChange(payments);
     }
